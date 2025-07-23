@@ -1,0 +1,35 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyc
+
+# Virtual environment
+venv/
+.venv/
+
+# Django stuff
+db.sqlite3
+*.log
+media/
+staticfiles/
+local_settings.py
+
+# VS Code
+.vscode/
+
+# Migrations cache (keep .py files if versioning migrations)
+*/migrations/__pycache__/
+
+# Environment files
+.env
+.env.*
+
+# Test/coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# System files
+.DS_Store
+Thumbs.db
