@@ -36,8 +36,8 @@ class Command(BaseCommand):
         
         tokens = get_tokens_for_user(user)
         self.stdout.write(self.style.HTTP_INFO(f'email: {email}, password: {password}'))
-        self.stdout.write(self.style.HTTP_INFO(f'Access token:\n {tokens["access"]}\n'))
-        self.stdout.write(self.style.HTTP_INFO(f'Refresh token:\n {tokens["refresh"]}'))
+        self.stdout.write(self.style.HTTP_INFO(f'Access token:\n{tokens["access"]}\n'))
+        self.stdout.write(self.style.HTTP_INFO(f'Refresh token:\n{tokens["refresh"]}'))
 
         
         

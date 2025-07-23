@@ -110,6 +110,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
+     'EXCEPTION_HANDLER': 'apis.exception_handler.custom_exception_handler'
 }
 
 # Internationalization
@@ -140,7 +141,7 @@ SPECTACULAR_SETTINGS = {
     'DESCRIPTION': 'CSV FILE UPLOAD RATE LIMITER API',
     'VERSION': '1.0.0',
     'SERVE_INCLUDE_SCHEMA': True,
-    'COMPONENT_SPLIT_REQUEST': False,
+    'COMPONENT_SPLIT_REQUEST': True,
 }
 
 SIMPLE_JWT = {
