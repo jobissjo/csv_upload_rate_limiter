@@ -104,14 +104,15 @@ class FileUploadView(GenericAPIView):
                 status_code=status.HTTP_400_BAD_REQUEST,
                 error_type=VALIDATION_ERROR_TYPE,
             )
-        
 
         self._init_required_variables()
 
         USER_OBJS = []
         try:
             for index, row in df.iterrows():
-                is_skipped, normalized_email = self._check_email_validation(row.get("email", ""))
+                is_skipped, normalized_email = self._check_email_validation(
+                    row.get("email", "")
+                )
                 if is_skipped:
                     continue
                 name = row.get("name", "")
@@ -124,11 +125,8 @@ class FileUploadView(GenericAPIView):
                 if is_skipped:
                     continue
 
-                USER_OBJS.append(
-                    User(email=normalized_email, name=name, age=age)
-                )
+                USER_OBJS.append(User(email=normalized_email, name=name, age=age))
                 self.EXISTING_MAILS.add(normalized_email)
-
 
             User.objects.bulk_create(USER_OBJS)
             detail = {
@@ -183,7 +181,7 @@ class FileUploadView(GenericAPIView):
             return True, None
         if normalized_email in self.EXISTING_MAILS:
             self.EXISTING_EMAIL_VALIDATION_FAILED_COUNT += 1
-            return True,  None
+            return True, None
         return False, normalized_email
 
     def check_age_validation(self, age):
@@ -193,7 +191,7 @@ class FileUploadView(GenericAPIView):
             return True, None
         try:
             age = int(age)
-            if age >=0 and age <= 120:
+            if age >= 0 and age <= 120:
                 return False, age
             else:
                 self.AGE_VALIDATION_FAILED_COUNT += 1
@@ -201,7 +199,7 @@ class FileUploadView(GenericAPIView):
         except (ValueError, TypeError):
             self.AGE_VALIDATION_FAILED_COUNT += 1
             return True, None
-    
+
     def _is_invalid_name(self, name) -> bool:
         """Accept name and check if it is valid or not. If valid return False else return True."""
         return pd.isna(name) or not str(name).strip()
