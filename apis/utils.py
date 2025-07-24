@@ -1,8 +1,11 @@
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.exceptions import APIException
+from .models import User
+from typing import Any, Dict, List, Optional, Union
+import re
 
 
-def get_tokens_for_user(user):
+def get_tokens_for_user(user:User):
     refresh = RefreshToken.for_user(user)
 
     return {
@@ -36,3 +39,15 @@ class ServiceError(APIException):
         self.error_type = error_type
         self.detail_error_response = detail_error_response
         super().__init__(detail, code)
+
+
+
+def get_formatted_response(data:Any, message:str=None, 
+                           detail: Optional[Dict[str, Any]] = None):
+    return {"data": data, "message": message, "detail": detail}
+
+
+EMAIL_REGEX = r'^[\w\.-]+@[\w\.-]+\.\w+$'
+
+def is_valid_email(email: str) -> bool:
+    return re.match(EMAIL_REGEX, email) is not None
