@@ -1,0 +1,9 @@
+{
+  "message": "Validation error",
+  "error_type": "validation_error",
+  "detail": {
+    "file": [
+      "Only .csv files are allowed."
+    ]
+  }
+}

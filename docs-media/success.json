@@ -1,0 +1,17 @@
+{
+  "data": null,
+  "message": "File uploaded successfully",
+  "detail": {
+    "success": [
+      "84 user records uploaded successfully"
+    ],
+    "failed": [
+      "5 user records failed due to null email",
+      "3 user records failed due to existing email",
+      "8 user records failed due to invalid name",
+      "2 user records failed due to invalid email",
+      "2 user records failed due to invalid age",
+      "20 total user records skipped"
+    ]
+  }
+}
